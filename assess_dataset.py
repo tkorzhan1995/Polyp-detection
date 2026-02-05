@@ -63,6 +63,28 @@ class DatasetAssessor:
             
         return True
     
+    def _collect_image_files(self, directory, image_extensions):
+        """
+        Helper function to collect image files from a directory.
+        
+        Args:
+            directory (Path): Directory to search
+            image_extensions (set): Set of image extensions to search for
+            
+        Returns:
+            tuple: (list of files, dict of extension counts)
+        """
+        files = []
+        extensions = defaultdict(int)
+        
+        # Search for both lowercase and uppercase extensions
+        for ext in image_extensions:
+            pattern_files = list(directory.glob(f'*{ext}')) + list(directory.glob(f'*{ext.upper()}'))
+            files.extend(pattern_files)
+            extensions[ext] += len(pattern_files)
+        
+        return files, extensions
+    
     def count_images(self, directory):
         """
         Count images in a directory.
@@ -80,18 +102,19 @@ class DatasetAssessor:
         files = []
         extensions = defaultdict(int)
         
-        for ext in image_extensions:
-            pattern_files = list(directory.glob(f'*{ext}')) + list(directory.glob(f'*{ext.upper()}'))
-            files.extend(pattern_files)
-            extensions[ext] += len(pattern_files)
+        # Search main directory
+        main_files, main_exts = self._collect_image_files(directory, image_extensions)
+        files.extend(main_files)
+        for ext, count in main_exts.items():
+            extensions[ext] += count
         
         # Also search in subdirectories
         for subdir in directory.iterdir():
             if subdir.is_dir():
-                for ext in image_extensions:
-                    pattern_files = list(subdir.glob(f'*{ext}')) + list(subdir.glob(f'*{ext.upper()}'))
-                    files.extend(pattern_files)
-                    extensions[ext] += len(pattern_files)
+                sub_files, sub_exts = self._collect_image_files(subdir, image_extensions)
+                files.extend(sub_files)
+                for ext, count in sub_exts.items():
+                    extensions[ext] += count
         
         return {
             'count': len(files),
@@ -122,7 +145,10 @@ class DatasetAssessor:
         aspect_ratios = []
         color_modes = defaultdict(int)
         
-        for file_path in files[:100]:  # Analyze first 100 images for performance
+        # Analyze first 100 images for performance
+        # Note: If images are sorted by properties, this sampling may not be representative
+        # For more accurate statistics, consider analyzing all images or using random sampling
+        for file_path in files[:100]:
             try:
                 with Image.open(file_path) as img:
                     width, height = img.size

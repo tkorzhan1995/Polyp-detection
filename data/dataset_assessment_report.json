@@ -4,12 +4,12 @@
     "directory": "data/train",
     "count": 5,
     "extensions": {
-      ".png": 0,
       ".gif": 0,
       ".jpeg": 0,
-      ".tiff": 0,
+      ".jpg": 5,
       ".bmp": 0,
-      ".jpg": 5
+      ".png": 0,
+      ".tiff": 0
     },
     "statistics": {
       "count": 5,
@@ -37,12 +37,12 @@
     "directory": "data/validation",
     "count": 2,
     "extensions": {
-      ".png": 0,
       ".gif": 0,
       ".jpeg": 0,
-      ".tiff": 0,
+      ".jpg": 2,
       ".bmp": 0,
-      ".jpg": 2
+      ".png": 0,
+      ".tiff": 0
     },
     "statistics": {
       "count": 2,
