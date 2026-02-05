@@ -1,0 +1,68 @@
+{
+  "train": {
+    "exists": true,
+    "directory": "data/train",
+    "count": 5,
+    "extensions": {
+      ".png": 0,
+      ".gif": 0,
+      ".jpeg": 0,
+      ".tiff": 0,
+      ".bmp": 0,
+      ".jpg": 5
+    },
+    "statistics": {
+      "count": 5,
+      "avg_width": 462.0,
+      "std_width": 62.75985978314483,
+      "min_width": 402,
+      "max_width": 578,
+      "avg_height": 492.8,
+      "std_height": 51.070147836089134,
+      "min_height": 427,
+      "max_height": 559,
+      "avg_size_kb": 5.2466796875,
+      "std_size_kb": 0.6814191415779198,
+      "min_size_kb": 4.498046875,
+      "max_size_kb": 6.4111328125,
+      "avg_aspect_ratio": 0.9538187416616394,
+      "std_aspect_ratio": 0.1996261963979346,
+      "color_modes": {
+        "RGB": 5
+      }
+    }
+  },
+  "validation": {
+    "exists": true,
+    "directory": "data/validation",
+    "count": 2,
+    "extensions": {
+      ".png": 0,
+      ".gif": 0,
+      ".jpeg": 0,
+      ".tiff": 0,
+      ".bmp": 0,
+      ".jpg": 2
+    },
+    "statistics": {
+      "count": 2,
+      "avg_width": 500.0,
+      "std_width": 57.0,
+      "min_width": 443,
+      "max_width": 557,
+      "avg_height": 508.0,
+      "std_height": 72.0,
+      "min_height": 436,
+      "max_height": 580,
+      "avg_size_kb": 5.466796875,
+      "std_size_kb": 0.0234375,
+      "min_size_kb": 5.443359375,
+      "max_size_kb": 5.490234375,
+      "avg_aspect_ratio": 1.0206580196140462,
+      "std_aspect_ratio": 0.25686491616577034,
+      "color_modes": {
+        "RGB": 2
+      }
+    }
+  }
+}
